@@ -41,7 +41,7 @@ describe('Authentication test', () => {
 
   after(function(done) {
     appServer.on('close', () => {
-      setTimeout(() => done(), 2000);
+      setTimeout(() => done(), 1000);
     });
 
     User.remove({}).exec((err) => {
@@ -60,7 +60,7 @@ describe('Authentication test', () => {
         url: baseUrl + '/auth/signin',
         form: {
           'email': userFixture.email,
-          'password': 'P@ssw0rd!'
+          'password': 'user_password'
         },
         json:true
       }, (err, res, body) => {

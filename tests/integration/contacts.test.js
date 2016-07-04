@@ -11,6 +11,8 @@ const chai = require('chai');
 const userFixture = require('../fixtures/user');
 const should = chai.should();
 
+chai.use(require('chai-things'));
+
 let app;
 let appServer;
 let mongoose;
@@ -42,8 +44,9 @@ describe('Contacts endpoints test', function() {
           url: `${baseUrl}/auth/signin`,
           form: {
             'email': userFixture.email,
-            'password': 'P@ssw0rd!'
+            'password': 'user_password'
           },
+          jar: true,
           json:true
         }, function(err, res, body) {
           if (err) throw err;
@@ -89,6 +92,7 @@ describe('Contacts endpoints test', function() {
           'email': 'jane.doe@test.com',
           'name': 'Jane Doe'
         },
+        jar: true,
         json:true
       }, (err, res, body) => {
         if (err) throw err;
@@ -117,6 +121,7 @@ describe('Contacts endpoints test', function() {
       request({
         method: 'GET',
         url: `${apiUrl}/contacts`,
+        jar: true,
         json:true
       }, (err, res, body) => {
         if (err) throw err;
@@ -149,6 +154,7 @@ describe('Contacts endpoints test', function() {
       request({
         method: 'GET',
         url: `${apiUrl}/contacts/${_contact.id}`,
+        jar: true,
         json:true
       }, (err, res, body) => {
         if (err) throw err;
@@ -163,6 +169,7 @@ describe('Contacts endpoints test', function() {
       request({
         method: 'GET',
         url: `${apiUrl}/contacts/U5ZArj3hjzj3zusT8JnZbWFu`,
+        jar: true,
         json:true
       }, (err, res, body) => {
         if (err) throw err;
@@ -194,6 +201,7 @@ describe('Contacts endpoints test', function() {
         form: {
           'name': 'Jane Doe'
         },
+        jar: true,
         json:true
       }, (err, res, body) => {
         if (err) throw err;
@@ -224,6 +232,7 @@ describe('Contacts endpoints test', function() {
       request({
         method: 'DELETE',
         url: `${apiUrl}/contacts/${_contact.id}`,
+        jar: true,
         json:true
       }, (err, res, body) => {
         if (err) throw err;
